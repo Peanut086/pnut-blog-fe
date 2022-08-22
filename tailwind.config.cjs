@@ -6,6 +6,10 @@ module.exports = {
     './src/**/*.{js,jsx,ts,tsx,vue}',
   ],
   theme: {
+    backgroundColor: theme => ({
+      ...theme('colors'),
+      commonBg:'rgb(246, 248, 235)'
+    }),
     extend: {},
   },
   plugins: [],

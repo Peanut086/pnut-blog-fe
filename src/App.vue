@@ -1,11 +1,10 @@
 <script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
+import container from './layout/container.vue'
 </script>
 
 <template>
-  <div>
-
+  <div class="w-screen h-screen" style="background-image:url('http://rfzcmq505.bkt.clouddn.com/project/subway-lines.png');">
+    <container/>
   </div>
 </template>
 

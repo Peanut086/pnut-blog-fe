@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     backgroundColor: theme => ({
       ...theme('colors'),
-      commonBg:'rgb(246, 248, 235)'
+      commonBg: 'rgb(246, 248, 235)'
     }),
     extend: {},
   },

@@ -1,16 +1,19 @@
 <template>
   <div class="container mx-auto h-screen bg-commonBg bg-opacity-90">
-    <container-header></container-header>
-    <div class="flex flex-auto flex-row">
-      <div class="w-1/5">1</div>
-      <div class="w-3/5">2</div>
-      <div class="w-1/5">3</div>
+    <div class="flex flex-col h-full">
+      <div class="bg-pink-700 h-auto">
+        <Header/>
+      </div>
+      <div class="bg-pink-100 h-full">
+        <Main/>
+      </div>
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
-import containerHeader from './component/container-header.vue'
+<script lang="ts" setup>
+import Header from './component/header.vue'
+import Main from './component/main.vue'
 </script>
 
 <style scoped>

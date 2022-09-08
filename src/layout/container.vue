@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto h-screen bg-commonBg bg-opacity-90">
     <div class="flex flex-col h-full">
-      <div class="bg-pink-700 h-auto">
+      <div class="w-full">
         <Header/>
       </div>
       <div class="bg-pink-100 h-full">

@@ -3,7 +3,11 @@
     <div class="w-1/2 flex">
       <div class="border-2 w-1/3">这是一段测试标题</div>
       <div class="border-2 w-2/3">
-        <input type="text">
+        <n-input placeholder="搜索">
+          <template #prefix>
+            <n-icon :component="FlashOutline"/>
+          </template>
+        </n-input>
       </div>
     </div>
     <div class="w-1/2">右边</div>

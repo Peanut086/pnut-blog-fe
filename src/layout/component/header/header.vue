@@ -6,7 +6,11 @@
       </div>
       <div class="w-2/3 align-middle">
         <div class="w-1/2">
-          <n-input clearable="true" placeholder="搜索" round/>
+          <n-input clearable="true" placeholder="搜索" round>
+            <template #suffix>
+              <n-icon :component="FlashOutline"/>
+            </template>
+          </n-input>
         </div>
       </div>
     </div>

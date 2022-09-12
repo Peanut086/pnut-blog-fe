@@ -1,5 +1,9 @@
-import { createApp } from 'vue'
+import {createApp} from 'vue'
 import './assets/style/index.css'
 import App from './App.vue'
+import registerIcons from "./icon-register";
 
-createApp(App).mount('#app')
+const app = createApp(App);
+// 注册图标
+registerIcons(app);
+app.mount('#app');

@@ -4,7 +4,7 @@
       <div class="w-full">
         <Header/>
       </div>
-      <div class="bg-pink-100 h-full">
+      <div class="h-full">
         <Main/>
       </div>
     </div>
@@ -12,8 +12,8 @@
 </template>
 
 <script lang="ts" setup>
-import Header from './component/header.vue'
-import Main from './component/main.vue'
+import Header from './component/header/header.vue'
+import Main from './component/main/main.vue'
 </script>
 
 <style scoped>

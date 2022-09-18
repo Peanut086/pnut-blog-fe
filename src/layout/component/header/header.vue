@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-12 flex flex-nowrap">
+  <div class="w-full h-12 flex flex-nowrap bg-amber-200">
     <div class="w-1/2 flex justify-between items-center p-2">
       <div class="w-1/3 font-bold text-2xl text-center">
         JavaScript大王

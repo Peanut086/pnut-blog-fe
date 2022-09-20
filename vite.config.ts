@@ -24,5 +24,16 @@ export default defineConfig({
     Components({
       resolvers: [NaiveUiResolver()]
     })
-  ]
+  ],
+  server: {
+    port: 3000,
+    // 反向代理
+    proxy: {
+      '/api': {
+        target: 'http://localhost:6677',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
+  },
 })

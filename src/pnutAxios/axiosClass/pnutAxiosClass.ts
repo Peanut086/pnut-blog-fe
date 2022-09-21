@@ -1,5 +1,4 @@
-import axios, {AxiosResponse} from "axios";
-import {AxiosInstance} from "axios"
+import axios, {AxiosResponse, AxiosInstance} from "axios";
 import {IPnutAxiosConfig, IIntercepter, IPnutResponse} from "./ITypes";
 
 export class PnutAxiosClass {
@@ -7,10 +6,7 @@ export class PnutAxiosClass {
   private customInterceptors: IIntercepter<AxiosResponse> | undefined;
 
   constructor(config: IPnutAxiosConfig) {
-    this.axiosInstance = axios.create({
-      baseURL: config.baseURL,
-      timeout: config.timeout,
-    })
+    this.axiosInstance = axios.create(config)
     this.customInterceptors = config.interceptors;
 
     // 所有实例公用的拦截器

@@ -1,8 +1,9 @@
 import {PnutAxiosClass} from './pnutAxiosClass';
+import {BASE_URL, TIME_OUT} from "./config";
 
 const PnutAxiosInstance = new PnutAxiosClass({
-  baseURL: '/api', // 设置代理  必须是与vite.config.ts中的proxy中的target一致
-  timeout: 5000,
+  baseURL: BASE_URL,
+  timeout: TIME_OUT,
   interceptors: {}
 })
 export default PnutAxiosInstance;

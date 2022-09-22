@@ -15,7 +15,10 @@ declare module '@vue/runtime-core' {
     NInput: typeof import('naive-ui')['NInput']
     NMenu: typeof import('naive-ui')['NMenu']
     NScrollbar: typeof import('naive-ui')['NScrollbar']
+    NSpace: typeof import('naive-ui')['NSpace']
+    NSpin: typeof import('naive-ui')['NSpin']
     PnutAvatar: typeof import('./src/components/pnutAvatar/pnutAvatar.vue')['default']
+    PnutFormDialog: typeof import('./src/components/pnutFormDialog/pnutFormDialog.vue')['default']
     PnutMenu: typeof import('./src/components/pnutMenu/pnutMenu.vue')['default']
   }
 }

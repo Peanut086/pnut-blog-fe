@@ -39,20 +39,20 @@ export class PnutAxiosClass {
     )
   }
 
-  public GET<T>(config: IPnutAxiosConfig): Promise<any> {
+  public GET<T>(config: IPnutAxiosConfig): Promise<IPnutResponse<T>> {
     return this.commonRequest<T>({...config, method: 'GET'})
   }
 
-  public POST<T>(config: IPnutAxiosConfig): Promise<any> {
-    return this.commonRequest<T>({...config, method: 'POST'})
+  public POST(config: IPnutAxiosConfig): Promise<any> {
+    return this.commonRequest({...config, method: 'POST'})
   }
 
-  public PUT<T>(config: IPnutAxiosConfig): Promise<any> {
-    return this.commonRequest<T>({...config, method: 'PUT'})
+  public PUT(config: IPnutAxiosConfig): Promise<any> {
+    return this.commonRequest({...config, method: 'PUT'})
   }
 
-  public DELETE<T>(config: IPnutAxiosConfig): Promise<any> {
-    return this.commonRequest<T>({...config, method: 'DELETE'})
+  public DELETE(config: IPnutAxiosConfig): Promise<any> {
+    return this.commonRequest({...config, method: 'DELETE'})
   }
 
   /*
@@ -60,12 +60,10 @@ export class PnutAxiosClass {
   * @param config 请求配置
   * @returns T 返回值类型
   * */
-  private commonRequest<T>(config: IPnutAxiosConfig): Promise<IPnutResponse> {
+  private commonRequest<T>(config: IPnutAxiosConfig): Promise<IPnutResponse<T>> {
     return new Promise((resolve, reject) => {
-      this.axiosInstance.request<any, AxiosResponse<IPnutResponse>>(config).then(res => {
-        let result: IPnutResponse<T> = {} as IPnutResponse<T>
-        result = {...res.data}
-        resolve(result)
+      this.axiosInstance.request<any, AxiosResponse<IPnutResponse, IPnutAxiosConfig>>(config).then(res => {
+        resolve(res.data)
       }).catch(err => {
         reject(err)
       })

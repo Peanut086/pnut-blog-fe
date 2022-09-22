@@ -43,16 +43,16 @@ export class PnutAxiosClass {
     return this.commonRequest<T>({...config, method: 'GET'})
   }
 
-  public POST(config: IPnutAxiosConfig): Promise<any> {
-    return this.commonRequest({...config, method: 'POST'})
+  public POST<T>(config: IPnutAxiosConfig): Promise<IPnutResponse<T>> {
+    return this.commonRequest<T>({...config, method: 'POST'})
   }
 
-  public PUT(config: IPnutAxiosConfig): Promise<any> {
-    return this.commonRequest({...config, method: 'PUT'})
+  public PUT<T>(config: IPnutAxiosConfig): Promise<IPnutResponse<T>> {
+    return this.commonRequest<T>({...config, method: 'PUT'})
   }
 
-  public DELETE(config: IPnutAxiosConfig): Promise<any> {
-    return this.commonRequest({...config, method: 'DELETE'})
+  public DELETE<T>(config: IPnutAxiosConfig): Promise<IPnutResponse<T>> {
+    return this.commonRequest<T>({...config, method: 'DELETE'})
   }
 
   /*

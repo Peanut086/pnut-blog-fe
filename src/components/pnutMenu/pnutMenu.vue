@@ -1,7 +1,7 @@
 <template>
   <div>
     <n-gradient-text class="text-2xl" type="info">
-      我是傻逼
+      {{ title }}
     </n-gradient-text>
     <n-menu
         :options="menuOptions"
@@ -11,24 +11,19 @@
 </template>
 
 <script lang="ts" setup>
-import {MenuOption, NIcon} from "naive-ui";
-import {RouterLink, useRouter} from "vue-router";
-import {Component, h} from "vue";
-import {
-  LaptopOutline as WorkIcon,
-  LogOutOutline as HomeIcon
-} from '@vicons/ionicons5'
+import {MenuOption} from "naive-ui";
+import {defineProps} from "vue";
 
-const renderIcon = (icon: Component) => {
-  return () => h(NIcon, null, {default: () => h(icon)})
-}
-const menuOptions: MenuOption[] = [
-  {
-    label: '工作台',
-    key: 'work',
-    icon: renderIcon(WorkIcon),
+defineProps<{
+  menuOptions: {
+    type: MenuOption[];
+    default: () => MenuOption[];
+  },
+  title: {
+    type: string;
+    default: () => "";
   }
-]
+}>()
 </script>
 
 <style scoped>

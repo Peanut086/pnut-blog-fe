@@ -10,12 +10,15 @@
         </n-scrollbar>
       </div>
     </div>
-    <div class="w-1/6">3</div>
+    <div class="w-1/6">
+      <right-aside/>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import menus from "../../../components/menus/menus.vue";
+import rightAside from "../../../components/rightAside/rightAside.vue"
 </script>
 
 <style scoped>

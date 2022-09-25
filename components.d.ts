@@ -17,8 +17,13 @@ declare module '@vue/runtime-core' {
     NScrollbar: typeof import('naive-ui')['NScrollbar']
     NSpace: typeof import('naive-ui')['NSpace']
     NSpin: typeof import('naive-ui')['NSpin']
+    PageContent: typeof import('./src/components/pageContent/pageContent.vue')['default']
+    PageContentList: typeof import('./src/components/pageContentList/pageContentList.vue')['default']
     PnutAvatar: typeof import('./src/components/pnutAvatar/pnutAvatar.vue')['default']
     PnutFormDialog: typeof import('./src/components/pnutFormDialog/pnutFormDialog.vue')['default']
     PnutMenu: typeof import('./src/components/pnutMenu/pnutMenu.vue')['default']
+    RightAside: typeof import('./src/components/rightAside/rightAside.vue')['default']
+    RouterLink: typeof import('vue-router')['RouterLink']
+    RouterView: typeof import('vue-router')['RouterView']
   }
 }

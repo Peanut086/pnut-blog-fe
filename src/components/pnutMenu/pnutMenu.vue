@@ -12,7 +12,6 @@
 
 <script lang="ts" setup>
 import {MenuOption} from "naive-ui";
-import {defineProps} from "vue";
 
 defineProps<{
   menuOptions: {

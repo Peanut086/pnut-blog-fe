@@ -4,7 +4,7 @@
       <pnut-avatar/>
     </div>
     <div class="bg-yellow-500 h-5/6 mt-2 p-2.5">
-      <pnut-menu :menuOptions="menuOptions" title="测试标题"></pnut-menu>
+      <pnut-menu :menuOptions="menuOptions" :title="测试标题"></pnut-menu>
     </div>
   </div>
 </template>
@@ -26,12 +26,16 @@ function renderIcon(icon: Component) {
 
 const menuOptions: MenuOption[] = [
   {
-    label: '工作台',
-    key: 'go-back-home',
-    icon: renderIcon(HomeIcon)
-  },
-  {
-    label: '傻逼',
+    label: () =>
+        h(
+            RouterLink,
+            {
+              to: {
+                path: '/list'
+              }
+            },
+            {default: () => '上班'}
+        ),
     key: 'go-to-work',
     icon: renderIcon(WorkIcon)
   }

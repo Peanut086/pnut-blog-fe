@@ -34,7 +34,20 @@ const menuOptions: MenuOption[] = [
                 path: '/list'
               }
             },
-            {default: () => '上班'}
+            {default: () => '测试1'}
+        ),
+    key: 'go-to-work',
+    icon: renderIcon(WorkIcon)
+  }, {
+    label: () =>
+        h(
+            RouterLink,
+            {
+              to: {
+                path: '/detail'
+              }
+            },
+            {default: () => '测试2'}
         ),
     key: 'go-to-work',
     icon: renderIcon(WorkIcon)

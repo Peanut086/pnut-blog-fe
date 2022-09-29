@@ -6,6 +6,10 @@ routes = [
     path: "/list",
     name: "contentList",
     component: () => import("../components/pageContentList/pageContentList.vue")
+  }, {
+    path: "/detail",
+    name: "content",
+    component: () => import("../components/pageContent/pageContent.vue")
   }
 ];
 

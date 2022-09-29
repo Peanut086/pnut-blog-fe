@@ -5,7 +5,9 @@
         <Header/>
       </div>
       <div class="h-full">
-        <Main/>
+        <n-message-provider>
+          <Main/>
+        </n-message-provider>
       </div>
     </div>
   </div>

@@ -28,6 +28,7 @@
 
 <script lang="ts" setup>
 import {h, defineComponent} from 'vue'
+import {useRouter} from "vue-router";
 import type {Component} from 'vue'
 import {NIcon, DropdownOption} from 'naive-ui'
 import headerLeft from "./components/headerLeft.vue"
@@ -37,6 +38,8 @@ import {
   Pencil as EditIcon,
   LogOutOutline as LogoutIcon
 } from '@vicons/ionicons5'
+
+const router = useRouter();
 
 const renderIcon = (icon: Component) => {
   return () => {
@@ -63,6 +66,11 @@ const menus: Array<IIHeaderMenus> = [
 const dropdownHandler = (key: string | number, option: DropdownOption) => {
   console.log('Pnut ========> ', key)
   console.log('Pnut ========> ', option)
+  switch (key) {
+    case "login":
+      router.push("/login");
+      break
+  }
 }
 </script>
 

@@ -3,7 +3,27 @@
 @tailwind utilities;
 
 @layer components {
+  /*列表容器*/
   .page-list-item-box {
-    @apply w-full flex flex-col justify-items-center bg-yellow-50 px-6 py-3 my-3 cursor-pointer;
+    @apply
+    w-full
+    flex
+    flex-col
+    justify-items-center
+    bg-yellow-50
+    px-6
+    py-3
+    my-6
+    cursor-pointer
+    rounded-t-3xl
+    rounded-r-3xl
+    shadow-2xl
+  }
+}
+@layer components {
+  /*列表子项标题*/
+  .page-list-item-title {
+    @apply
+    h-2/3 w-full flex items-center font-bold text-4xl border-solid border-solid border-b-8
   }
 }

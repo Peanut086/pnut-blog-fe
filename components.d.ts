@@ -16,6 +16,7 @@ declare module '@vue/runtime-core' {
     NImage: typeof import('naive-ui')['NImage']
     NInput: typeof import('naive-ui')['NInput']
     NMenu: typeof import('naive-ui')['NMenu']
+    NModal: typeof import('naive-ui')['NModal']
     NScrollbar: typeof import('naive-ui')['NScrollbar']
     NSpace: typeof import('naive-ui')['NSpace']
     NSpin: typeof import('naive-ui')['NSpin']

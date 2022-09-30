@@ -53,7 +53,7 @@ import {IIHeaderMenus} from "../header.interface";
 const menus: Array<IIHeaderMenus> = [
   {
     label: '登录',
-    key: "login",
+    key: "userInfo",
     icon: renderIcon(UserIcon)
   },
   {
@@ -67,8 +67,8 @@ const dropdownHandler = (key: string | number, option: DropdownOption) => {
   console.log('Pnut ========> ', key)
   console.log('Pnut ========> ', option)
   switch (key) {
-    case "login":
-      router.push("/login");
+    case "userInfo":
+      router.push("/userInfo");
       break
   }
 }

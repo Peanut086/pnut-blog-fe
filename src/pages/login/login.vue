@@ -3,8 +3,8 @@
     <div class="w-full h-80 bg-pink-100 flex flex-col items-center justify-center">
       <div class="w-1/2">
         <n-form ref="formRef" :model="model" :rules="rules" label-placement="left">
-          <n-form-item label="账号:" path="account">
-            <n-input v-model:value="model.account" clearable round @keydown.enter.prevent/>
+          <n-form-item label="账号:" path="username">
+            <n-input v-model:value="model.username" clearable round @keydown.enter.prevent/>
           </n-form-item>
           <n-form-item label="密码:" path="password">
             <n-input
@@ -38,17 +38,20 @@
 import {ref} from "vue"
 import {FormInst, FormItemRule, FormRules, useMessage} from "naive-ui"
 import {CashOutline as CashIcon} from '@vicons/ionicons5'
-import {ILoginInterface} from "./login.interface"
+import {useLoginStore} from "../../store/modules/userInfo";
+import {ILoginInterface, ILoginResponse} from "./login.interface"
+import pnutRequest from "../../pnutAxios/index"
 
 const model = ref<ILoginInterface>({
-  account: "",
+  username: "",
   password: ""
 })
 const formRef = ref<FormInst | null>(null)
 const message = useMessage()
+const loginStore = useLoginStore()
 
 const rules: FormRules = {
-  account: [
+  username: [
     {
       required: true,
       validator(rule: FormItemRule, value: string) {
@@ -74,7 +77,7 @@ const rules: FormRules = {
       validator(rule: FormItemRule, value: string) {
         if (value.length === 0) {
           return new Error("密码为空咋登录")
-        } else if (value.length < 8) {
+        } else if (value.length < 6) {
           return new Error("密码长度必须是大于8小于12的字符组合喔")
         }
         return true
@@ -86,11 +89,24 @@ const rules: FormRules = {
 const submit = () => {
   formRef.value?.validate((errors) => {
     if (!errors) {
-      console.log('验证通过')
+      startLogin()
     } else {
       message.error("检查一下有没有输入错误喔")
     }
   })
+}
+
+const startLogin = async () => {
+  const res = await pnutRequest.POST<ILoginResponse>({
+    url: "/auth/login",
+    data: model.value
+  })
+  if (res.status === 201) {
+    message.success("登录成功")
+    loginStore.setToken(res.data.token)
+  } else {
+    message.warning(res.message)
+  }
 }
 </script>
 

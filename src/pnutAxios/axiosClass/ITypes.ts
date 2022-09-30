@@ -16,6 +16,6 @@ export interface IPnutAxiosConfig<T = AxiosResponse> extends AxiosRequestConfig 
 // 通用返回值类型
 export interface IPnutResponse<T = any> {
   data: T;
-  code: number;
+  status: number;
   message: string;
 }

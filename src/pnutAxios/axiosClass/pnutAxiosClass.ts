@@ -1,5 +1,6 @@
-import axios, {AxiosResponse, AxiosInstance} from "axios";
+import axios, {AxiosResponse, AxiosInstance, AxiosError} from "axios";
 import {IPnutAxiosConfig, IIntercepter, IPnutResponse} from "./ITypes";
+
 
 export class PnutAxiosClass {
   private axiosInstance: AxiosInstance;
@@ -11,8 +12,6 @@ export class PnutAxiosClass {
 
     // 所有实例公用的拦截器
     this.axiosInstance.interceptors.request.use((config) => {
-        const headers = config.headers as any // 这里由于axios版本的原因   headers的类型中并不包含Authorization  因此需要使用类型断言
-        headers.Authorization = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjM2NTE1NTQsImV4cCI6MTY2NDI1NjM1NH0.ab62yMnTDQ4zg4w5yXDo9oSvzp2Qii6L2U2XO910W84"
         console.log('Pnut ========> ', "全局拦截器已成功")
         return config;
       },
@@ -62,10 +61,27 @@ export class PnutAxiosClass {
   * */
   private commonRequest<T>(config: IPnutAxiosConfig): Promise<IPnutResponse<T>> {
     return new Promise((resolve, reject) => {
+      //某个请求独有的拦截器
+      if (config.interceptors?.requestInterceptor) {
+        config = config.interceptors.requestInterceptor(config)
+      }
       this.axiosInstance.request<any, AxiosResponse<IPnutResponse, IPnutAxiosConfig>>(config).then(res => {
+        //单个请求对数据的处理
+        if (config.interceptors?.responseInterceptor) {
+          res = config.interceptors.responseInterceptor(res)
+        }
+
+        // 判断是否是AxiosError
+        if (res instanceof AxiosError && res.response) {
+          resolve(res.response.data)
+          return res.response.data
+        }
+
         resolve(res.data)
+        return res.data
       }).catch(err => {
         reject(err)
+        return err
       })
     })
   }

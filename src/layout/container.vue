@@ -14,20 +14,8 @@
 </template>
 
 <script lang="ts" setup>
-import {onMounted} from "vue";
 import Header from './component/header/header.vue'
 import Main from './component/main/main.vue'
-import pnutRequest from "../pnutAxios/index"
-import {IUser} from "../interface/user.interface";
-
-
-onMounted(async () => {
-  let res = await pnutRequest.GET<Array<IUser>>({
-    url: "user"
-  })
-  console.log('Pnut ========> ', res.data[0].avatar)
-})
-
 </script>
 
 <style scoped>

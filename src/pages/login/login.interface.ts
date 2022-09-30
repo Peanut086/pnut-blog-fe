@@ -1,4 +1,8 @@
 export interface ILoginInterface {
-  account: string | number
+  username: string | number
   password: string
+}
+
+export interface ILoginResponse {
+  token: string
 }

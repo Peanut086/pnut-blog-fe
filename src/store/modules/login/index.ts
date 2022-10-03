@@ -3,12 +3,15 @@ import {ILoginInterface, ILoginResponse} from "../../../pages/login/login.interf
 import pnutRequest from "../../../pnutAxios/index"
 import localStorageUtil from "../../../utils/localStorageUtil";
 import {IWindow} from "./type";
+import {useUerInfoStore} from "../userInfo";
 
 enum authApi {
   LOGIN = "/auth/login"
 }
 
 let currentWindow: IWindow = window;
+const userInfoStore = useUerInfoStore();
+
 export const useLoginStore = defineStore("login", {
   state: () => {
     return {}
@@ -23,6 +26,7 @@ export const useLoginStore = defineStore("login", {
       if (res.status === 201) {
         currentWindow.$message.success("登录成功")
         localStorageUtil.set("token", res.data.token)
+        userInfoStore.setUserInfo(res.data.userInfo)
       } else {
         currentWindow.$message.error(res.message)
       }

@@ -2,11 +2,13 @@ import {defineStore} from "pinia";
 import {ILoginInterface, ILoginResponse} from "../../../pages/login/login.interface";
 import pnutRequest from "../../../pnutAxios/index"
 import localStorageUtil from "../../../utils/localStorageUtil";
+import {IWindow} from "./type";
 
 enum authApi {
   LOGIN = "/auth/login"
 }
 
+let currentWindow: IWindow = window;
 export const useLoginStore = defineStore("login", {
   state: () => {
     return {}
@@ -19,10 +21,10 @@ export const useLoginStore = defineStore("login", {
         data: loginInfo
       })
       if (res.status === 201) {
-        window.$message.success("登录成功")
+        currentWindow.$message.success("登录成功")
         localStorageUtil.set("token", res.data.token)
       } else {
-        window.$message.error(res.message)
+        currentWindow.$message.error(res.message)
       }
     }
   }

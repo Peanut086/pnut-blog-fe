@@ -38,9 +38,8 @@
 import {ref} from "vue"
 import {FormInst, FormItemRule, FormRules, useMessage} from "naive-ui"
 import {CashOutline as CashIcon} from '@vicons/ionicons5'
-import {useLoginStore} from "../../store/modules/userInfo";
-import {ILoginInterface, ILoginResponse} from "./login.interface"
-import pnutRequest from "../../pnutAxios/index"
+import {ILoginInterface} from "./login.interface"
+import {useLoginStore} from "../../store/modules/login/index"
 
 const model = ref<ILoginInterface>({
   username: "",
@@ -96,17 +95,10 @@ const submit = () => {
   })
 }
 
-const startLogin = async () => {
-  const res = await pnutRequest.POST<ILoginResponse>({
-    url: "/auth/login",
-    data: model.value
-  })
-  if (res.status === 201) {
-    message.success("登录成功")
-    loginStore.setToken(res.data.token)
-  } else {
-    message.warning(res.message)
-  }
+const startLogin = () => {
+  // window上挂载指定的属性
+  window.$message = message;
+  loginStore.login(model.value)
 }
 </script>
 

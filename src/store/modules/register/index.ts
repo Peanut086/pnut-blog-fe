@@ -1,6 +1,7 @@
 import {defineStore} from "pinia";
 import pnutRequest from "../../../pnutAxios/index"
 import {IUser} from "../../../interface/user.interface";
+import router from "../../../router/index"
 
 export const useRegisterStore = defineStore('register', {
   state: () => {
@@ -16,6 +17,8 @@ export const useRegisterStore = defineStore('register', {
       })
       if (res.status === 201) {
         currentWindow.$message.success(res.message)
+
+        await router.push('/login')
       } else {
         currentWindow.$message.error(res.message)
       }

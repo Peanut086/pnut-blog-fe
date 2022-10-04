@@ -9,14 +9,15 @@ export const useRegisterStore = defineStore('register', {
   getters: {},
   actions: {
     async register(user: IUser) {
+      const currentWindow = window as any;
       const res = await pnutRequest.POST<IUser>({
         url: '/user/create',
         data: user
       })
       if (res.status === 201) {
-        window.$message.success(res.message)
+        currentWindow.$message.success(res.message)
       } else {
-        window.$message.error(res.message)
+        currentWindow.$message.error(res.message)
       }
     }
   }

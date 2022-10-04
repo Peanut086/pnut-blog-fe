@@ -1,8 +1,8 @@
 import {IUser} from "../../interface/user.interface";
 
 export interface ILoginInterface {
-  username: string | number
-  password: string
+  username?: string | number
+  password?: string
 }
 
 export interface ILoginResponse {

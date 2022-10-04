@@ -7,6 +7,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    FormPanel: typeof import('./src/components/formPanel/formPanel.vue')['default']
     MarkDownEditor: typeof import('./src/components/markDownEditor/markDownEditor.vue')['default']
     Menus: typeof import('./src/components/menus/menus.vue')['default']
     NAvatar: typeof import('naive-ui')['NAvatar']

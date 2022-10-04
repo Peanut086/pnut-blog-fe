@@ -12,7 +12,7 @@ routes = [
     name: "content",
     component: () => import("../components/pageContent/pageContent.vue")
   }, {
-    path: "/userInfo",
+    path: "/login",
     name: "login",
     component: () => import("../pages/login/login.vue")
   }

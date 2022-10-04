@@ -12,9 +12,10 @@ import {useMessage} from "naive-ui"
 import {registerFormConfig} from "./config/registerFormConfig";
 import {useRegisterStore} from "../../store/modules/register/index";
 
+const message = useMessage()
+
 const startRegister = (data: any) => {
-  window.$message = useMessage();
-  console.log('Pnut ========> ', window)
+  window.$message = message;
   useRegisterStore().register(data)
 }
 </script>

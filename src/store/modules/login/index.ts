@@ -1,5 +1,5 @@
 import {defineStore} from "pinia";
-import {ILoginInterface, ILoginResponse} from "../../../pages/login/login.interface";
+import {ILoginInterface, ILoginResponse} from "../../../interface/login.interface";
 import pnutRequest from "../../../pnutAxios/index"
 import localStorageUtil from "../../../utils/localStorageUtil";
 import {IWindow} from "./type";

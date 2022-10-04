@@ -48,7 +48,7 @@ const renderIcon = (icon: Component) => {
     })
   }
 }
-import {IIHeaderMenus} from "../header.interface";
+import {IIHeaderMenus} from "../../../../interface/header.interface";
 
 const menus: Array<IIHeaderMenus> = [
   {
@@ -68,10 +68,14 @@ const dropdownHandler = (key: string | number, option: DropdownOption) => {
   console.log('Pnut ========> ', option)
   switch (key) {
     case "login":
-      router.push("/login");
+      router.push({
+        path: "/login",
+      });
       break
     case "register":
-      router.push("/newLogin");
+      router.push({
+        path: "/register",
+      });
       break
   }
 }

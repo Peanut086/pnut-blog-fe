@@ -27,7 +27,7 @@
 <script lang="ts" setup>
 import {defineProps, ref} from "vue";
 import {IFormConfig} from "./interface";
-import {ILoginInterface} from "../../pages/login/login.interface";
+import {ILoginInterface} from "../../interface/login.interface";
 import {FormInst, useMessage} from "naive-ui";
 
 // props

@@ -1,4 +1,4 @@
-import {IUser} from "../../interface/user.interface";
+import {IUser} from "./user.interface";
 
 export interface ILoginInterface {
   username?: string | number

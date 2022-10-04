@@ -5,19 +5,16 @@
     </div>
     <div>还没想好放什么</div>
   </div>
-
 </template>
 
 <script lang="ts" setup>
-import {FormInst, FormItemRule, FormRules, useMessage} from "naive-ui"
+import {useMessage} from "naive-ui"
 import formPanel from "../../components/formPanel/formPanel.vue"
-import {ILoginInterface} from "./login.interface"
 import {useLoginStore} from "../../store/modules/login/index"
 import {loginFormConfig} from "./config/loginForm";
 
 const message = useMessage()
 const loginStore = useLoginStore()
-
 
 const startLogin = (data: any) => {
   // window上挂载指定的属性

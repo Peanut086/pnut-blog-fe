@@ -15,6 +15,10 @@ routes = [
     path: "/login",
     name: "login",
     component: () => import("../pages/login/login.vue")
+  }, {
+    path: "/register",
+    name: "register",
+    component: () => import("../pages/register/register.vue")
   }
 ];
 

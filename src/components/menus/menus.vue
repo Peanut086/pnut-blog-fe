@@ -4,7 +4,7 @@
       <pnut-avatar/>
     </div>
     <div class="bg-yellow-500 h-5/6 mt-2 p-2.5">
-      <pnut-menu :menuOptions="menuOptions" title="文章"></pnut-menu>
+      <pnut-menu :menuOptions="menus" title="文章"></pnut-menu>
     </div>
   </div>
 </template>
@@ -12,53 +12,15 @@
 <script lang="ts" setup>
 import pnutAvatar from "../pnutAvatar/pnutAvatar.vue"
 import pnutMenu from "../pnutMenu/pnutMenu.vue"
-import {MenuOption, NIcon} from "naive-ui";
-import {RouterLink} from "vue-router";
-import {Component, h, onMounted} from "vue";
-import {
-  LaptopOutline as WorkIcon,
-  LogOutOutline as HomeIcon
-} from '@vicons/ionicons5'
+import {Component, h, onMounted, onBeforeMount, computed, ref} from "vue";
 import {useArticalCategoryStore} from "../../store/modules/articalCategory";
 
 // 获取菜单数据
-onMounted(() => {
+onBeforeMount(() => {
   useArticalCategoryStore().getArticalCategoryByType('1')
 })
 
-function renderIcon(icon: Component) {
-  return () => h(NIcon, null, {default: () => h(icon)})
-}
-
-const menuOptions: MenuOption[] = [
-  {
-    label: () =>
-        h(
-            RouterLink,
-            {
-              to: {
-                path: '/list'
-              }
-            },
-            {default: () => '测试1'}
-        ),
-    key: 'go-to-work',
-    icon: renderIcon(WorkIcon)
-  }, {
-    label: () =>
-        h(
-            RouterLink,
-            {
-              to: {
-                path: '/detail'
-              }
-            },
-            {default: () => '测试2'}
-        ),
-    key: 'go-to-work',
-    icon: renderIcon(WorkIcon)
-  }
-]
+const menus: any = computed(() => useArticalCategoryStore().getCategoryTec)
 </script>
 
 <style scoped>

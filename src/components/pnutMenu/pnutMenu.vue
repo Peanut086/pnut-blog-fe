@@ -6,6 +6,7 @@
     <n-menu
         :options="menuOptions"
         accordion
+        @select="selectHandler"
     />
   </div>
 </template>
@@ -23,6 +24,9 @@ defineProps<{
     default: () => "";
   }
 }>()
+const selectHandler = (v: any) => {
+  
+}
 </script>
 
 <style scoped>

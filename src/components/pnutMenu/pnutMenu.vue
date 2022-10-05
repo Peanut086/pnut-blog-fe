@@ -1,6 +1,6 @@
 <template>
   <div>
-    <n-gradient-text class="text-2xl" type="info">
+    <n-gradient-text class="text-xl" type="info">
       {{ title }}
     </n-gradient-text>
     <n-menu

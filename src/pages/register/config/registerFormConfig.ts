@@ -123,6 +123,6 @@ export const registerFormConfig: IFormConfig = {
       }
     ]
   },
-  cancelText: '取消',
-  submitText: '登录'
+  cancelText: '取 消',
+  submitText: '注 册'
 }

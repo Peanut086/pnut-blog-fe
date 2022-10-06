@@ -5,11 +5,12 @@ let routes: RouteRecordRaw[];
 routes = [
   {
     path: "/list",
-    name: "contentList",
+    name: "list",
+    props: true,
     component: () => import("../components/pageContentList/pageContentList.vue")
   }, {
     path: "/detail",
-    name: "content",
+    name: "detail",
     component: () => import("../components/pageContent/pageContent.vue")
   }, {
     path: "/login",

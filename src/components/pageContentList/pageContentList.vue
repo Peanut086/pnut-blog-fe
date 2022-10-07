@@ -1,7 +1,7 @@
 <template>
   <div class="h-full overflow-auto p-2.5 flex flex-col">
     <n-scrollbar>
-      <page-content-list-item v-for="item in articalList" :key="item.id"/>
+      <page-content-list-item v-for="item in articalList" :key="item.id" :artical="item"/>
     </n-scrollbar>
   </div>
 </template>

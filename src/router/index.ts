@@ -9,10 +9,6 @@ routes = [
     props: true,
     component: () => import("../components/pageContentList/pageContentList.vue")
   }, {
-    path: "/detail",
-    name: "detail",
-    component: () => import("../components/pageContent/pageContent.vue")
-  }, {
     path: "/login",
     name: "login",
     component: () => import("../pages/login/login.vue")
@@ -20,6 +16,10 @@ routes = [
     path: "/register",
     name: "register",
     component: () => import("../pages/register/register.vue")
+  }, {
+    path: "/article-detailed",
+    name: "article-detailed",
+    component: () => import("../pages/articalDetail/articalDetail.vue")
   }
 ];
 

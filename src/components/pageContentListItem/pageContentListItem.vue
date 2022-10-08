@@ -38,21 +38,24 @@
 </template>
 
 <script lang="ts" setup>
-import {defineProps} from "vue";
+import {onMounted, ref} from "vue";
 import {useRouter} from "vue-router";
 import {GameControllerOutline, GameController} from '@vicons/ionicons5'
 import {IArticalInterface} from "../../interface/artical.interface";
 import {pnutDateFormat} from "../../utils/pnutDateFormat";
+import {useArticalStore} from "../../store/modules/artical/index"
 
 const textLinearGradient = 'linear-gradient(243deg, rgba(181,208,15,0.7931547619047619) 5%, rgba(133,222,118,0.9444152661064426) 40%, rgba(94,190,218,0.9500175070028011) 100%)'
 
-defineProps<{
+const props = defineProps<{
   artical: IArticalInterface
 }>()
 
 const router = useRouter()
+const articalStore = useArticalStore()
 const showArticalDetail = () => {
-  router.push('/detail')
+  articalStore.setCurrentArtical(props.artical)
+  router.push('/article-detailed')
 }
 </script>
 

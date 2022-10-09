@@ -16,7 +16,7 @@ const PnutAxiosInstance = new PnutAxiosClass({
       if (token) {
         headers.Authorization = `Bearer ${token}`;
       } else {
-        message.error("请先登录");
+        headers.Authorization = '';
       }
       return config;
     },

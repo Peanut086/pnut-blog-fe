@@ -20,6 +20,10 @@ routes = [
     path: "/article-detailed",
     name: "article-detailed",
     component: () => import("../pages/articalDetail/articalDetail.vue")
+  }, {
+    path: "/create-article",
+    name: "create-article",
+    component: () => import("../pages/createArtical/createArtical.vue")
   }
 ];
 

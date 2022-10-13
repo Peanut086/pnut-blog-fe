@@ -4,7 +4,7 @@
       <menus></menus>
     </div>
     <div class="w-4/6">
-      <div class="w-full h-full bg-amber-700">
+      <div class="w-full h-full">
         <!--        <n-scrollbar class="h-full w-full">-->
         <router-view></router-view>
         <!--        </n-scrollbar>-->

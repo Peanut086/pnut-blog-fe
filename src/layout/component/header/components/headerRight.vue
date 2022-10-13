@@ -137,6 +137,11 @@ const dropdownHandler = (key: string | number, option: DropdownOption) => {
         path: "/register",
       });
       break
+    case 'write':
+      router.push({
+        path: "/create-article",
+      });
+      break
   }
 }
 </script>

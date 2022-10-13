@@ -13,9 +13,12 @@
         {{ artical.title }}
       </n-gradient-text>
     </div>
-    <div class="h-1/3 w-full flex items-center text-2xl">
+    <div class="h-1/3 w-full flex items-center text-xl mt-2">
       <div>作者:{{ artical.user.nick_name }}</div>
       <div class="ml-3.5">发布时间:{{ pnutDateFormat(artical.user.create_time) }}</div>
+      <div class="h-1/3 ml-3">
+        <n-tag v-for="(i,dx) in artical.tags" class=" mr-2" type="success">{{ i.name }}</n-tag>
+      </div>
     </div>
   </div>
   <!--  <div v-else

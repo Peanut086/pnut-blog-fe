@@ -27,6 +27,7 @@ declare module '@vue/runtime-core' {
     NSelect: typeof import('naive-ui')['NSelect']
     NSpace: typeof import('naive-ui')['NSpace']
     NSpin: typeof import('naive-ui')['NSpin']
+    NTag: typeof import('naive-ui')['NTag']
     PageContent: typeof import('./src/components/pageContent/pageContent.vue')['default']
     PageContentList: typeof import('./src/components/pageContentList/pageContentList.vue')['default']
     PageContentListItem: typeof import('./src/components/pageContentListItem/pageContentListItem.vue')['default']

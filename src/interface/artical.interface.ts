@@ -1,4 +1,5 @@
 import {IUser} from "./user.interface";
+import {ITag} from "./tag.interface";
 
 export interface IArticalInterface {
   id: number
@@ -10,4 +11,5 @@ export interface IArticalInterface {
   category: string
   author: number
   user: IUser
+  tags: ITag[]
 }

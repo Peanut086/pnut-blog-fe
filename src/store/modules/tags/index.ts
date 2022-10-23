@@ -9,7 +9,11 @@ export const useTagsStore = defineStore('tag', {
       tags: [] as ITag[],
     }
   },
-  getters: {},
+  getters: {
+    getAllTags(): ITag[] {
+      return this.tags
+    }
+  },
   actions: {
     async queryAllTags() {
       const res = await pnutRequest.GET<ITag[]>({

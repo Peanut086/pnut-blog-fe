@@ -18,15 +18,18 @@
 </template>
 
 <script lang="ts" setup>
-import {h, ref, render} from "vue";
+import {h, ref} from "vue";
 import {useDialog} from "naive-ui";
 import {useRouter} from "vue-router";
 import submitContent from './components/submitContent.vue'
+import {NDialogProvider} from "naive-ui/es/dialog/src/DialogProvider";
+import {useSubmitStore} from "../../store/modules/submitCache";
 
 let title = ref()
 let content = ref()
 const router = useRouter()
 const dialog = useDialog()
+const submitStore = useSubmitStore()
 /*
 * 取消按钮对应事件
 * */
@@ -48,13 +51,17 @@ const nextStep = () => {
   dialog.success({
     title: '成功',
     content: () => {
-      return h(submitContent, {ref: 'sbContentRef'}, [])
+      return h(submitContent, null, [])
     },
     positiveText: '确定',
     negativeText: '先不提交',
-    onPositiveClick: () => {
+    onPositiveClick: (mouseEvent) => {
+      let category = submitStore.$state.category
+      let tags = submitStore.$state.tags
+      console.log('Pnut ========> ', category)
     },
     onNegativeClick: () => {
+
     }
   })
 }

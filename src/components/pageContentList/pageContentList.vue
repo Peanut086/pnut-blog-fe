@@ -11,9 +11,11 @@ import {computed, watch, ref, onMounted} from 'vue'
 import pageContentListItem from "../pageContentListItem/pageContentListItem.vue"
 import {useArticalCategoryStore} from "../../store/modules/articalCategory";
 import {useArticalStore} from "../../store/modules/artical";
+import {useTagsStore} from "../../store/modules/tags";
 
 const currentMenuId = ref(computed(() => useArticalCategoryStore().getCurrentMenuId))
 const articalList = ref(computed(() => useArticalStore().getArticalList))
+const tagStore = useTagsStore()
 
 watch(currentMenuId, (newVal, oldVal) => {
   queryArticalListByType(newVal as string)
@@ -24,7 +26,8 @@ const queryArticalListByType = (type: string) => {
 }
 
 onMounted(() => {
-
+  // 请求所有标签数据
+  tagStore.queryAllTags()
 })
 </script>
 

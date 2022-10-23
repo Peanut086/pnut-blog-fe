@@ -24,12 +24,18 @@ import {useRouter} from "vue-router";
 import submitContent from './components/submitContent.vue'
 import {NDialogProvider} from "naive-ui/es/dialog/src/DialogProvider";
 import {useSubmitStore} from "../../store/modules/submitCache";
+import {useArticalStore} from "../../store/modules/artical";
+import {ITag} from "../../interface/tag.interface";
+import {IUser} from "../../interface/user.interface";
+import {useUerInfoStore} from "../../store/modules/userInfo";
 
 let title = ref()
 let content = ref()
 const router = useRouter()
 const dialog = useDialog()
 const submitStore = useSubmitStore()
+const articalStore = useArticalStore()
+const userStore = useUerInfoStore()
 /*
 * 取消按钮对应事件
 * */
@@ -58,7 +64,14 @@ const nextStep = () => {
     onPositiveClick: (mouseEvent) => {
       let category = submitStore.$state.category
       let tags = submitStore.$state.tags
-      console.log('Pnut ========> ', category)
+      articalStore.createArtical({
+        title: title.value,
+        content: content.value,
+        status: '1',
+        category: category.toString(),
+        author: String(userStore.$state.userInfo.id),
+        tags: tags,
+      })
     },
     onNegativeClick: () => {
 

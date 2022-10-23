@@ -34,6 +34,14 @@ export const useArticalStore = defineStore('artical', {
 
     setCurrentArtical(artical: IArticalInterface) {
       this.currentArtical = artical
+    },
+    /*新增文章*/
+    async createArtical(artical: IArticalInterface) {
+      const res = await pnutRequest.POST<IArticalInterface>({
+        url: '/article/create',
+        data: artical
+      })
+      return res.data
     }
   }
 })

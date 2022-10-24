@@ -1,7 +1,17 @@
 <template>
-  <n-scrollbar class="w-full h-full overflow-auto">
-    <page-content v-if="article" :artical="article"/>
-  </n-scrollbar>
+  <!--  <n-scrollbar class="w-full h-full overflow-auto">-->
+  <page-content v-if="article" :artical="article" class="h-full">
+    <template #content>
+      <div class="h-full">
+        <v-md-preview-html :html="article.content" height="100%"
+                           preview-class="vuepress-markdown-body"/>
+      </div>
+    </template>
+    <template #footer>
+      <div>低不低顶部</div>
+    </template>
+  </page-content>
+  <!--  </n-scrollbar>-->
 </template>
 
 <script lang="ts" setup>

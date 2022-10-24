@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full overflow-auto p-2.5 flex flex-col">
+  <div class="h-full overflow-auto p-2.5 flex flex-col mb-3">
     <n-scrollbar>
       <page-content-list-item v-for="item in articalList" :key="item.id" :artical="item"/>
     </n-scrollbar>

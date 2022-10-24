@@ -6,7 +6,7 @@
       </n-form-item>
     </div>
     <div class="h-full overflow-auto mb-2.5">
-      <v-md-editor v-model="content" height="100%"/>
+      <v-md-editor v-model="content" class="overflow-auto" height="100%" @change="mdChange"/>
     </div>
     <div class="flex flex-col mb-2.5 justify-center items-center">
       <div class="w-1/4">
@@ -68,7 +68,7 @@ const nextStep = () => {
       let tags = submitStore.$state.tags
       articalStore.createArtical({
         title: title.value,
-        content: content.value,
+        content: String(content),
         status: '1',
         category: category.toString(),
         author: String(user.id),
@@ -79,6 +79,12 @@ const nextStep = () => {
 
     }
   })
+}
+
+const mdChange = (text: string, html: any) => {
+  console.log('Pnut ========> ', text)
+  console.log('Pnut ========> ', html)
+  content = html
 }
 </script>
 

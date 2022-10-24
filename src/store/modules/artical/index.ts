@@ -41,6 +41,7 @@ export const useArticalStore = defineStore('artical', {
         url: '/article/create',
         data: artical
       })
+      window.$message.success(res.message)
       return res.data
     }
   }

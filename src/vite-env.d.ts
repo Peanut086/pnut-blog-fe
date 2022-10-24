@@ -1,9 +1,19 @@
 /// <reference types="vite/client" />
 
+import {DialogApiInjection} from "naive-ui/es/dialog/src/DialogProvider";
+import {MessageApiInjection} from "naive-ui/es/message/src/MessageProvider";
+
 declare module '*.vue' {
   import type {DefineComponent} from 'vue'
   const component: DefineComponent<{}, {}, any>
   export default component
+}
+
+declare global {
+  interface Window {
+    $message: MessageApiInjection;
+    $dialog: DialogApiInjection;
+  }
 }
 
 declare module '@kangc/v-md-editor'

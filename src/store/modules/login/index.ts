@@ -27,6 +27,7 @@ export const useLoginStore = defineStore("login", {
         currentWindow.$message.success("登录成功")
         localStorageUtil.set("token", res.data.token)
         userInfoStore.setUserInfo(res.data.userInfo)
+        localStorageUtil.set("userInfo", JSON.stringify(res.data.userInfo))
       } else {
         currentWindow.$message.error(res.message)
       }

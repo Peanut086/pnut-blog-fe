@@ -28,6 +28,7 @@ import {useArticalStore} from "../../store/modules/artical";
 import {ITag} from "../../interface/tag.interface";
 import {IUser} from "../../interface/user.interface";
 import {useUerInfoStore} from "../../store/modules/userInfo";
+import localStorageUtil from "../../utils/localStorageUtil";
 
 let title = ref()
 let content = ref()
@@ -54,6 +55,7 @@ const cancelEdit = () => {
 }
 
 const nextStep = () => {
+  const user = JSON.parse(localStorageUtil.get('userInfo') || "")
   dialog.success({
     title: '成功',
     content: () => {
@@ -69,7 +71,7 @@ const nextStep = () => {
         content: content.value,
         status: '1',
         category: category.toString(),
-        author: String(userStore.$state.userInfo.id),
+        author: String(user.id),
         tags: tags,
       })
     },

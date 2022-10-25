@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto h-screen overflow-hidden bg-commonBg bg-opacity-90">
+  <div class="container mx-auto h-screen overflow-hidden bg-commonBg">
     <div class="flex flex-col h-full">
       <div class="w-full">
         <Header/>

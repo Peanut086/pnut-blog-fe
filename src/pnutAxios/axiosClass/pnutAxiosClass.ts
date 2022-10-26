@@ -67,8 +67,9 @@ export class PnutAxiosClass {
   * */
   private commonRequest<T>(config: IPnutAxiosConfig): Promise<IPnutResponse<T>> {
     return new Promise((resolve, reject) => {
-      spinControlStore.setState(true)
-      if (this.showLoading && config.showLoading) {
+      if (!this.showLoading && !config.showLoading) {
+// 只要有一个关闭  就不加载loading
+      } else {
         spinControlStore.setState(true)
       }
 

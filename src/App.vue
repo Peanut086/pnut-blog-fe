@@ -1,6 +1,6 @@
 <template>
   <div class="w-screen h-screen bg-main-bg">
-    <n-spin :show="show">
+    <n-spin :show="show" description="稍安勿躁呀..." size="large">
       <container/>
       <template #icon>
         <n-icon>

@@ -7,9 +7,9 @@
                              preview-class="vuepress-markdown-body"/>
         </div>
       </template>
-      <template #footer>
-        <div class="h-40">低不低顶部</div>
-      </template>
+      <!--      <template #footer>-->
+      <!--        <div class="h-40">低不低顶部</div>-->
+      <!--      </template>-->
     </page-content>
   </n-scrollbar>
 </template>

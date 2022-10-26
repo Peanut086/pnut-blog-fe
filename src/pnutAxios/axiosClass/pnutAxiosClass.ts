@@ -67,6 +67,7 @@ export class PnutAxiosClass {
   * */
   private commonRequest<T>(config: IPnutAxiosConfig): Promise<IPnutResponse<T>> {
     return new Promise((resolve, reject) => {
+      spinControlStore.setState(true)
       if (this.showLoading && config.showLoading) {
         spinControlStore.setState(true)
       }

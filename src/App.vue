@@ -2,6 +2,11 @@
   <div class="w-screen h-screen bg-main-bg">
     <n-spin :show="show">
       <container/>
+      <template #icon>
+        <n-icon>
+          <PaperPlaneOutline/>
+        </n-icon>
+      </template>
     </n-spin>
   </div>
 </template>

@@ -1,14 +1,20 @@
 import axios, {AxiosResponse, AxiosInstance, AxiosError} from "axios";
 import {IPnutAxiosConfig, IIntercepter, IPnutResponse} from "./ITypes";
+// pinia在单独的ts文件中使用需要这样   否则会报错
+import pinia from "../../store";
+import {useSpinControl} from "../../store/modules/spinControl";
 
+const spinControlStore = useSpinControl(pinia)
 
 export class PnutAxiosClass {
   private axiosInstance: AxiosInstance;
   private customInterceptors: IIntercepter<AxiosResponse> | undefined;
+  private showLoading: boolean | undefined
 
   constructor(config: IPnutAxiosConfig) {
     this.axiosInstance = axios.create(config)
     this.customInterceptors = config.interceptors;
+    this.showLoading = config.showLoading
 
     // 所有实例公用的拦截器
     this.axiosInstance.interceptors.request.use((config) => {
@@ -61,6 +67,10 @@ export class PnutAxiosClass {
   * */
   private commonRequest<T>(config: IPnutAxiosConfig): Promise<IPnutResponse<T>> {
     return new Promise((resolve, reject) => {
+      if (this.showLoading && config.showLoading) {
+        spinControlStore.setState(true)
+      }
+
       //某个请求独有的拦截器
       if (config.interceptors?.requestInterceptor) {
         config = config.interceptors.requestInterceptor(config)
@@ -82,6 +92,8 @@ export class PnutAxiosClass {
       }).catch(err => {
         reject(err)
         return err
+      }).finally(() => {
+        spinControlStore.setState(false)
       })
     })
   }

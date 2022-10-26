@@ -11,6 +11,7 @@ export interface IIntercepter<T = AxiosResponse> {
 // 自定义axios配置类型
 export interface IPnutAxiosConfig<T = AxiosResponse> extends AxiosRequestConfig {
   interceptors?: IIntercepter<T>;
+  showLoading?: boolean
 }
 
 // 通用返回值类型

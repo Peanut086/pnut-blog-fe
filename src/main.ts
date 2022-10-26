@@ -1,5 +1,5 @@
 import {createApp} from 'vue'
-import {createPinia} from "pinia";
+import pinia from "./store";
 import * as VueRouter from "vue-router";
 import './assets/style/index.css'
 import App from './App.vue'
@@ -12,7 +12,6 @@ import VMdPreviewHtml from "./utils/registerEditorPreHTML"
 const app = createApp(App);
 app.use(router)
 // 引入Pinia
-const pinia = createPinia();
 app.use(pinia)
 // 注册编辑器
 app.use(VMdEditor)

@@ -7,6 +7,7 @@ const message = useMessage();
 const PnutAxiosInstance = new PnutAxiosClass({
   baseURL: BASE_URL,
   timeout: TIME_OUT,
+  showLoading: true,
   interceptors: {
     requestInterceptor: (config) => {
       console.log('Pnut ========> ', "单实例拦截器已生效")

@@ -17,7 +17,7 @@
     cursor-pointer
     rounded-t-3xl
     rounded-r-3xl
-    shadow-2xl
+    shadow-xl
   }
 }
 @layer components {

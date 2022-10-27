@@ -1,5 +1,5 @@
 <template>
-  <div class="flex h-full p-2.5">
+  <div class="flex h-full">
     <div class="w-1/6">
       <menus></menus>
     </div>

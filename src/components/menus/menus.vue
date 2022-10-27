@@ -1,10 +1,10 @@
 <template>
-  <div class="flex h-full w-full p-2.5 bg-amber-100 flex flex-col">
-    <div class="bg-pink-100 h-1/6 text-center p-2.5">
+  <div class="flex h-full bg-bg-menu-box w-full pr-2.5  flex flex-col">
+    <div class=" h-1/6 w-full text-center">
       <pnut-avatar/>
     </div>
-    <div class="bg-yellow-500 h-5/6 mt-2 p-2.5">
-      <pnut-menu :menuOptions="menus" title="文章"></pnut-menu>
+    <div class="bg-bg-menu-box h-5/6 mt-2 p-2.5">
+      <pnut-menu :menuOptions="menus" title="组成"></pnut-menu>
     </div>
   </div>
 </template>

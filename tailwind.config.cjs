@@ -29,6 +29,9 @@ module.exports = {
       },
       backgroundImage: {
         'main-bg': "url('https://pnut.oss-cn-chengdu.aliyuncs.com/alchemy.gif?Expires=1666624662&OSSAccessKeyId=TMP.3KhYhPjRUNJfeuMwkv5tT8idHnEr5TiLbG1tL5PASnsu3LQBhdK3HYWMGzMeWW1kaFRLfvYM1bho6srYqMPwJgo7H4uWxT&Signature=14V5gX1G%2BaWcEmFGNBuv3S7erus%3D')",
+      },
+      backgroundColor: {
+        'bg-menu-box': '#f9f9f9'
       }
     },
   },

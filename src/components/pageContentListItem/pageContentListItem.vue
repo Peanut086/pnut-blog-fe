@@ -1,7 +1,7 @@
 <template>
   <div class="page-list-item-box"
        @click="showArticalDetail">
-    <div v-if="true">
+    <div v-if="artical.cover">
       <img class="h-80 w-full" src="https://cdn.seovx.com/?mom=302">
     </div>
     <div

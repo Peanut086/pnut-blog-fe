@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-12 flex flex-nowrap bg-amber-200">
+  <div class="w-full h-12 flex flex-nowrap bg-bg-menu-box shadow mb-2">
     <div class="w-1/2 flex justify-between items-center p-2">
       <header-left></header-left>
     </div>

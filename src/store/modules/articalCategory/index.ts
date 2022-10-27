@@ -12,12 +12,18 @@ export const useArticalCategoryStore = defineStore('articalCategory', {
   },
   getters: {
     getCategoryTec(): Array<IArticalCategory> {
+      const deep = (v: any) => {
+        v.children.map((s: any) => {
+          s.label = s.name
+          s.key = s.id
+          if (s.children) {
+            deep(s)
+          }
+        })
+      }
       this.categoryTec.map(item => {
         if (item.children) {
-          item.children.map(sub => {
-            sub.label = sub.name
-            sub.key = sub.id
-          })
+          deep(item)
         }
         item.key = item.id
         item.label = item.name

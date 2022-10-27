@@ -6,6 +6,8 @@
     <n-menu
         :options="menuOptions"
         accordion
+        key-field="id"
+        label-field="name"
         @update-value="selectHandler"
     />
   </div>

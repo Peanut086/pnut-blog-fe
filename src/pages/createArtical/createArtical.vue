@@ -9,7 +9,7 @@
       <v-md-editor v-model="content" class="overflow-auto" height="100%" @change="mdChange"/>
     </div>
     <div class="flex flex-col mb-2.5 justify-center items-center">
-      <div class="w-1/4">
+      <div class="w-1/4 h-32">
         <n-button class="mr-6" @click="cancelEdit">取 消</n-button>
         <n-button @click="nextStep">下一步</n-button>
       </div>

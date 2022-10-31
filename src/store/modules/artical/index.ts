@@ -22,7 +22,12 @@ export const useArticalStore = defineStore('artical', {
       const res = await pnutRequest.GET<Array<IArticalInterface>>({
         url: `/article/type/${type}`
       })
-      this.articalList = res.data
+      if (res.data.length > 0) {
+        this.articalList = res.data
+      } else {
+        window.$message.error('暂无数据')
+        this.articalList = []
+      }
     },
 
     async getArticalDetail(id: string) {
@@ -41,8 +46,13 @@ export const useArticalStore = defineStore('artical', {
         url: '/article/create',
         data: artical
       })
-      window.$message.success(res.message)
-      return res.data
+      if (res.status == 201) {
+        window.$message.success(res.message)
+        return res.data
+      } else {
+        window.$message.error(res.message)
+        return []
+      }
     }
   }
 })

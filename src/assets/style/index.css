@@ -10,20 +10,19 @@
     flex
     flex-col
     justify-items-center
-    bg-yellow-50
+    bg-yellow-100
     px-6
     py-3
     my-6
     cursor-pointer
     rounded-t-3xl
     rounded-r-3xl
-    shadow-xl
   }
 }
 @layer components {
   /*列表子项标题*/
   .page-list-item-title {
     @apply
-    h-2/3 w-full flex items-center font-bold text-4xl border-solid border-solid border-b-8
+    h-2/3 w-full flex items-center font-bold text-4xl
   }
 }

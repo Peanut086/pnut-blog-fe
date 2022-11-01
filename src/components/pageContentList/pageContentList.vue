@@ -24,6 +24,11 @@ const queryArticalListByType = (type: string) => {
   useArticalStore().getArticalListByType(type)
 }
 
+// 初始化时获取当前菜单id   请求文章列表
+onMounted(() => {
+  queryArticalListByType(currentMenuId.value as string)
+})
+
 </script>
 
 <style scoped>

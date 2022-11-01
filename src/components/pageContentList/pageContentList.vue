@@ -15,7 +15,6 @@ import {useTagsStore} from "../../store/modules/tags";
 
 const currentMenuId = ref(computed(() => useArticalCategoryStore().getCurrentMenuId))
 const articalList = ref(computed(() => useArticalStore().getArticalList))
-const tagStore = useTagsStore()
 
 watch(currentMenuId, (newVal, oldVal) => {
   queryArticalListByType(newVal as string)
@@ -25,10 +24,6 @@ const queryArticalListByType = (type: string) => {
   useArticalStore().getArticalListByType(type)
 }
 
-onMounted(() => {
-  // 请求所有标签数据
-  tagStore.queryAllTags()
-})
 </script>
 
 <style scoped>

@@ -14,29 +14,63 @@
         <n-button @click="nextStep">下一步</n-button>
       </div>
     </div>
+
+    <n-modal
+        v-model:show="showModal"
+        :mask-closable="false"
+        negative-text="取 消"
+        positive-text="提 交"
+        preset="dialog"
+        title="最后一步了..."
+        @positive-click="confirmSubmit"
+        @negative-click="cancelSubmit"
+    >
+      <template #default>
+        <div>
+          <n-form-item label="选择分类:" label-placement="left">
+            <n-tree-select
+                :options="categoryOption"
+                @update:value="updateCategory"
+            />
+          </n-form-item>
+          <n-form-item label="选择标签:" label-placement="left">
+            <n-cascader
+                v-model:value="tags"
+                :options="tagOption"
+                check-strategy="child"
+                filterable
+                multiple
+                @update-value="updateTags"
+            />
+          </n-form-item>
+        </div>
+      </template>
+    </n-modal>
   </div>
 </template>
 
 <script lang="ts" setup>
-import {h, ref} from "vue";
-import {useDialog} from "naive-ui";
-import {useRouter} from "vue-router";
-import submitContent from './components/submitContent.vue'
-import {NDialogProvider} from "naive-ui/es/dialog/src/DialogProvider";
-import {useSubmitStore} from "../../store/modules/submitCache";
-import {useArticalStore} from "../../store/modules/artical";
-import {ITag} from "../../interface/tag.interface";
-import {IUser} from "../../interface/user.interface";
-import {useUerInfoStore} from "../../store/modules/userInfo";
-import localStorageUtil from "../../utils/localStorageUtil";
+import { computed, ref } from 'vue'
+import { useDialog } from 'naive-ui'
+import { useRouter } from 'vue-router'
+import { useArticalStore } from '../../store/modules/artical'
+import localStorageUtil from '../../utils/localStorageUtil'
+import { useTagsStore } from '../../store/modules/tags'
+import { useArticalCategoryStore } from '../../store/modules/articalCategory'
 
-let title = ref()
-let content = ref()
+const title = ref()
+const content = ref()
+const submitContent = ref()
 const router = useRouter()
 const dialog = useDialog()
-const submitStore = useSubmitStore()
 const articalStore = useArticalStore()
-const userStore = useUerInfoStore()
+const tagsStore = useTagsStore()
+const articalCategoryStore = useArticalCategoryStore()
+const category = ref('')
+const tags = ref('')
+const showModal = ref(false)
+const user = JSON.parse(localStorageUtil.get('userInfo') || '')
+
 /*
 * 取消按钮对应事件
 * */
@@ -54,37 +88,66 @@ const cancelEdit = () => {
   })
 }
 
+/*
+* 点击下一步的事件回调
+* */
 const nextStep = () => {
-  const user = JSON.parse(localStorageUtil.get('userInfo') || "")
-  dialog.success({
-    title: '成功',
-    content: () => {
-      return h(submitContent, null, [])
-    },
-    positiveText: '确定',
-    negativeText: '先不提交',
-    onPositiveClick: (mouseEvent) => {
-      let category = submitStore.$state.category
-      let tags = submitStore.$state.tags
-      articalStore.createArtical({
-        title: title.value,
-        content: String(content),
-        status: '1',
-        category: category.toString(),
-        author: String(user.id),
-        tags: tags,
-      })
-    },
-    onNegativeClick: () => {
-
-    }
-  })
+  showModal.value = true
 }
 
+/*
+* 编辑器内容改变时的回调事件
+* */
 const mdChange = (text: string, html: any) => {
   console.log('Pnut ========> ', text)
   console.log('Pnut ========> ', html)
-  content = html
+  submitContent.value = html
+}
+
+const categoryOption = ref(computed(() => articalCategoryStore.getCategoryTec)) // CascaderOption[]
+const tagOption = ref(computed(() => {
+  return tagsStore.getAllTags.map(item => {
+    return {
+      label: item.name,
+      value: item.id
+    }
+  })
+})) // CascaderOption[]
+
+/*
+* 获取当前选中的分类id
+*  */
+const updateCategory = (v: any) => {
+  category.value = v
+}
+
+/*
+* 获取当前选中的标签id
+* */
+const updateTags = (v: any) => {
+  tags.value = v
+}
+
+/*
+* 弹窗中点击确认的回调
+* */
+const confirmSubmit = () => {
+  showModal.value = false
+  articalStore.createArtical({
+    title: title.value,
+    content: String(submitContent.value),
+    status: '1',
+    category: category.value.toString(),
+    author: String(user.id),
+    tags: tags.value.toString()
+  })
+}
+
+/*
+* 弹窗中点击取消的回调
+* */
+const cancelSubmit = () => {
+  showModal.value = false
 }
 </script>
 

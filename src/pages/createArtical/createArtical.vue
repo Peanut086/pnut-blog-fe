@@ -27,13 +27,14 @@
     >
       <template #default>
         <div>
-          <n-form-item label="选择分类:" label-placement="left">
+          <n-form-item :rule="categoryRule" label="选择分类:" label-placement="left">
             <n-tree-select
+                v-model:value="category"
                 :options="categoryOption"
                 @update:value="updateCategory"
             />
           </n-form-item>
-          <n-form-item label="选择标签:" label-placement="left">
+          <n-form-item :rule="tagsRule" label="选择标签:" label-placement="left">
             <n-cascader
                 v-model:value="tags"
                 :options="tagOption"
@@ -55,7 +56,7 @@
 
 <script lang="ts" setup>
 import { computed, onMounted, ref, watch, watchEffect } from 'vue'
-import { useDialog } from 'naive-ui'
+import { FormItemRule, FormRules, useDialog } from 'naive-ui'
 import { useRouter } from 'vue-router'
 import { useArticalStore } from '../../store/modules/artical'
 import localStorageUtil from '../../utils/localStorageUtil'
@@ -80,6 +81,24 @@ const showModal = ref(false)
 const user = JSON.parse(localStorageUtil.get('userInfo') || '')
 // 调用文件上传hooks
 const uploadRef = ref<IRefItem>()
+// 表单验证规则
+const categoryRule = {
+  trigger: ['input', 'blur'],
+  validator () {
+    if (category.value === '') {
+      return new Error('别忘了选择分类哦')
+    }
+  }
+}
+
+const tagsRule = {
+  trigger: ['input', 'blur'],
+  validator () {
+    if (tags.value.length === 0) {
+      return new Error('标签也不能为空~')
+    }
+  }
+}
 
 /*
 * 取消按钮对应事件
@@ -109,8 +128,6 @@ const nextStep = () => {
 * 编辑器内容改变时的回调事件
 * */
 const mdChange = (text: string, html: any) => {
-  console.log('Pnut ========> ', text)
-  console.log('Pnut ========> ', html)
   submitContent.value = html
 }
 
@@ -142,21 +159,25 @@ const updateTags = (v: any) => {
 * 弹窗中点击确认的回调
 * */
 const confirmSubmit = () => {
-  showModal.value = false
-  // 如果文件上传成功就继续提交  否则终止提交操作
-  const status = uploadRef.value?.startUpload!()
-  if (!status) {
-    return false
+  if (isNotEmpty()) {
+    showModal.value = false
+    // 如果文件上传成功就继续提交  否则终止提交操作
+    const files = uploadRef.value?.startUpload!()
+    if (files.length === 0) {
+      window.$message.error('文件上传失败了，重新试试吧')
+      return false
+    }
+    articalStore.createArtical({
+      title: title.value,
+      content: String(submitContent.value),
+      status: '1',
+      category: category.value.toString(),
+      author: String(user.id),
+      tags: tags.value.toString()
+    })
   }
-  articalStore.createArtical({
-    title: title.value,
-    content: String(submitContent.value),
-    status: '1',
-    category: category.value.toString(),
-    author: String(user.id),
-    tags: tags.value.toString()
-  })
-  console.log('Pnut ========> ', uploadRef.value)
+  // 必须return   否则默认会关闭弹窗
+  return false
 }
 
 /*
@@ -164,6 +185,17 @@ const confirmSubmit = () => {
 * */
 const cancelSubmit = () => {
   showModal.value = false
+}
+
+/*
+* 判断标签、分类是否为空
+* */
+const isNotEmpty = (): boolean => {
+  if (category.value === '' || tags.value.length === 0) {
+    window.$message.error('标签、分类不能为空')
+    return false
+  }
+  return true
 }
 </script>
 

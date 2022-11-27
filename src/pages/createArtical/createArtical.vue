@@ -43,6 +43,10 @@
                 @update-value="updateTags"
             />
           </n-form-item>
+          <n-form-item label="选择分类:" label-placement="left">
+            <pnut-upload
+                ref="uploadRef"/>
+          </n-form-item>
         </div>
       </template>
     </n-modal>
@@ -50,13 +54,17 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref, watch, watchEffect } from 'vue'
 import { useDialog } from 'naive-ui'
 import { useRouter } from 'vue-router'
 import { useArticalStore } from '../../store/modules/artical'
 import localStorageUtil from '../../utils/localStorageUtil'
 import { useTagsStore } from '../../store/modules/tags'
 import { useArticalCategoryStore } from '../../store/modules/articalCategory'
+import puntUpload from '../../components/pnutUpload/src/pnutUpload.vue'
+import { useUpload } from '../../components/pnutUpload/src/hooks/useUpload'
+import pnutUpload from '../../components/pnutUpload'
+import { IRefItem } from '../../components/pnutUpload/src/types'
 
 const title = ref()
 const content = ref()
@@ -70,6 +78,8 @@ const category = ref('')
 const tags = ref('')
 const showModal = ref(false)
 const user = JSON.parse(localStorageUtil.get('userInfo') || '')
+// 调用文件上传hooks
+const uploadRef = ref<IRefItem>()
 
 /*
 * 取消按钮对应事件
@@ -133,6 +143,11 @@ const updateTags = (v: any) => {
 * */
 const confirmSubmit = () => {
   showModal.value = false
+  // 如果文件上传成功就继续提交  否则终止提交操作
+  const status = uploadRef.value?.startUpload!()
+  if (!status) {
+    return false
+  }
   articalStore.createArtical({
     title: title.value,
     content: String(submitContent.value),
@@ -141,6 +156,7 @@ const confirmSubmit = () => {
     author: String(user.id),
     tags: tags.value.toString()
   })
+  console.log('Pnut ========> ', uploadRef.value)
 }
 
 /*

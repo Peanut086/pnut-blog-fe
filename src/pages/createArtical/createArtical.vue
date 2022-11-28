@@ -158,20 +158,23 @@ const updateTags = (v: any) => {
 /*
 * 弹窗中点击确认的回调
 * */
-const confirmSubmit = () => {
+const confirmSubmit = async () => {
   if (isNotEmpty()) {
     showModal.value = false
+    // 用于判断当前是否有文件被选中
+    const hasFile: boolean = uploadRef.value?.fileList?.length !== 0
     // 如果文件上传成功就继续提交  否则终止提交操作
-    const files = uploadRef.value?.startUpload!()
-    if (files.length === 0) {
+    const files = await uploadRef.value?.startUpload!()
+    if (files.length === 0 && hasFile) {
       window.$message.error('文件上传失败了，重新试试吧')
       return false
     }
-    articalStore.createArtical({
+    await articalStore.createArtical({
       title: title.value,
       content: String(submitContent.value),
       status: '1',
       category: category.value.toString(),
+      cover: files[0]?.url ?? '',
       author: String(user.id),
       tags: tags.value.toString()
     })

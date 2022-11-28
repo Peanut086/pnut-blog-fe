@@ -1,5 +1,4 @@
-import {IUser} from "./user.interface";
-import {ITag} from "./tag.interface";
+import { IUser } from './user.interface'
 
 export interface IArticalInterface {
   id?: number
@@ -9,7 +8,8 @@ export interface IArticalInterface {
   content: string
   status: string
   category: string
+  cover?: string
   author: string
   user?: IUser
-  tags: any
+  tags: string
 }

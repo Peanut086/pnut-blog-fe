@@ -2,7 +2,8 @@
   <div class="page-list-item-box"
        @click="showArticalDetail">
     <div v-if="artical.cover">
-      <img class="h-80 w-full" src="https://cdn.seovx.com/?mom=302">
+      <!--      <img class="h-80 w-full" :src="https://cdn.seovx.com/?mom=302">-->
+      <img :src="artical.cover" class="h-80 w-full">
     </div>
     <div
         class="page-list-item-title">
@@ -23,13 +24,13 @@
 </template>
 
 <script lang="ts" setup>
-import {computed, onMounted, ref} from "vue";
-import {useRouter} from "vue-router";
-import {IArticalInterface} from "../../interface/artical.interface";
-import {pnutDateFormat} from "../../utils/pnutDateFormat";
-import {useArticalStore} from "../../store/modules/artical/index"
-import getRandomIcon from "../../utils/randomIcon";
-import randomColorStr from "../../utils/randomColorStr";
+import { computed, onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { IArticalInterface } from '../../interface/artical.interface'
+import { pnutDateFormat } from '../../utils/pnutDateFormat'
+import { useArticalStore } from '../../store/modules/artical/index'
+import getRandomIcon from '../../utils/randomIcon'
+import randomColorStr from '../../utils/randomColorStr'
 
 const textLinearGradient = 'linear-gradient(243deg, rgba(181,208,15,0.7931547619047619) 5%, rgba(133,222,118,0.9444152661064426) 40%, rgba(94,190,218,0.9500175070028011) 100%)'
 
@@ -45,12 +46,12 @@ const showArticalDetail = () => {
 }
 
 // 获取随机图标
-let randomIcon = ref(computed(() => {
+const randomIcon = ref(computed(() => {
   return getRandomIcon()
 }))
 
 // 随机颜色
-let randomColor = ref(computed(() => {
+const randomColor = ref(computed(() => {
   return randomColorStr()
 }))
 </script>

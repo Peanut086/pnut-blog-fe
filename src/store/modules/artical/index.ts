@@ -1,12 +1,12 @@
-import {defineStore} from 'pinia'
-import pnutRequest from "../../../pnutAxios/index"
-import {IArticalInterface} from "../../../interface/artical.interface";
+import { defineStore } from 'pinia'
+import pnutRequest from '../../../pnutAxios/index'
+import { IArticalInterface } from '../../../interface/artical.interface'
 
 export const useArticalStore = defineStore('artical', {
   state: () => {
     return {
       articalList: [] as IArticalInterface[],
-      currentArtical: {} as IArticalInterface,
+      currentArtical: {} as IArticalInterface
     }
   },
   getters: {
@@ -18,8 +18,8 @@ export const useArticalStore = defineStore('artical', {
     }
   },
   actions: {
-    async getArticalListByType(type: string) {
-      const res = await pnutRequest.GET<Array<IArticalInterface>>({
+    async getArticalListByType (type: string) {
+      const res = await pnutRequest.GET<IArticalInterface[]>({
         url: `/article/type/${type}`
       })
       if (res.data.length > 0) {
@@ -30,23 +30,23 @@ export const useArticalStore = defineStore('artical', {
       }
     },
 
-    async getArticalDetail(id: string) {
+    async getArticalDetail (id: string) {
       const res = await pnutRequest.GET<IArticalInterface>({
         url: `/article/detail/${id}`
       })
       this.currentArtical.content = res.data.content
     },
 
-    setCurrentArtical(artical: IArticalInterface) {
+    setCurrentArtical (artical: IArticalInterface) {
       this.currentArtical = artical
     },
-    /*新增文章*/
-    async createArtical(artical: IArticalInterface) {
+    /* 新增文章 */
+    async createArtical (artical: IArticalInterface) {
       const res = await pnutRequest.POST<IArticalInterface>({
         url: '/article/create',
         data: artical
       })
-      if (res.status == 201) {
+      if (res.status === 201) {
         window.$message.success(res.message)
         return res.data
       } else {

@@ -164,12 +164,13 @@ const confirmSubmit = async () => {
     // 用于判断当前是否有文件被选中
     const hasFile: boolean = uploadRef.value?.fileList?.length !== 0
     // 如果文件上传成功就继续提交  否则终止提交操作
-    const files = await uploadRef.value?.startUpload!()
+    const files = hasFile ? await uploadRef.value?.startUpload!() : []
     if (files.length === 0 && hasFile) {
       window.$message.error('文件上传失败了，重新试试吧')
       return false
     }
-    await articalStore.createArtical({
+
+    const res = await articalStore.createArtical({
       title: title.value,
       content: String(submitContent.value),
       status: '1',
@@ -178,6 +179,10 @@ const confirmSubmit = async () => {
       author: String(user.id),
       tags: tags.value.toString()
     })
+
+    if (res) {
+      await router.back()
+    }
   }
   // 必须return   否则默认会关闭弹窗
   return false

@@ -13,11 +13,11 @@
 
 <script lang="ts" setup>
 import container from './layout/container.vue'
-import {useSpinControl} from "./store/modules/spinControl";
-import {computed, ref, watch} from "vue";
+import { useSpinControl } from './store/modules/spinControl'
+import { computed, ref, watch } from 'vue'
 
 const spinControl = useSpinControl()
-let show = ref(false)
+const show = ref(false)
 
 watch(computed(() => spinControl.show), (newVal, oldVal) => {
   show.value = newVal

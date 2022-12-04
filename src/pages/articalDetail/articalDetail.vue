@@ -3,8 +3,7 @@
     <page-content v-if="article" :artical="article" class="h-full">
       <template #content>
         <div class="h-full">
-          <v-md-preview-html :html="article.content" height="100%"
-                             preview-class="vuepress-markdown-body"/>
+          <markDownEditor v-model="article.content" :previewOnly="true" style="width: 100%;padding: 0 30px"/>
         </div>
       </template>
       <!--      <template #footer>-->
@@ -16,6 +15,7 @@
 
 <script lang="ts" setup>
 import pageContent from '../../components/pageContent/pageContent.vue'
+import markDownEditor from '../../components/markdownEditor/markdownEditor.vue'
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useArticalStore } from '../../store/modules/artical'

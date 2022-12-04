@@ -8,6 +8,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     BaseModal: typeof import('./src/components/baseModal/baseModal.vue')['default']
+    Common: typeof import('./src/components/comment/common.vue')['default']
     FormPanel: typeof import('./src/components/formPanel/formPanel.vue')['default']
     MarkdownEditor: typeof import('./src/components/markdownEditor/markdownEditor.vue')['default']
     Menus: typeof import('./src/components/menus/menus.vue')['default']

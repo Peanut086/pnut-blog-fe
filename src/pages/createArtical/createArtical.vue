@@ -6,10 +6,11 @@
       </n-form-item>
     </div>
     <div class="h-full overflow-auto mb-2.5">
-      <v-md-editor v-model="content" class="overflow-auto" height="100%" @change="mdChange"/>
+      <!--      <v-md-editor v-model="content" class="overflow-auto" height="100%" @change="mdChange"/>-->
+      <markDownEditor v-model="content" style="width:100%;height: 100%;" @change="mdChange"/>
     </div>
     <div class="flex flex-col mb-2.5 justify-center items-center">
-      <div class="w-1/4 h-32">
+      <div class="w-1/4 h-20">
         <n-button class="mr-6" @click="cancelEdit">取 消</n-button>
         <n-button @click="nextStep">下一步</n-button>
       </div>
@@ -65,11 +66,11 @@ import { useArticalCategoryStore } from '../../store/modules/articalCategory'
 import puntUpload from '../../components/pnutUpload/src/pnutUpload.vue'
 import { useUpload } from '../../components/pnutUpload/src/hooks/useUpload'
 import pnutUpload from '../../components/pnutUpload'
+import markDownEditor from '../../components/markdownEditor/markdownEditor.vue'
 import { IRefItem } from '../../components/pnutUpload/src/types'
 
 const title = ref()
 const content = ref()
-const submitContent = ref()
 const router = useRouter()
 const dialog = useDialog()
 const articalStore = useArticalStore()
@@ -128,7 +129,7 @@ const nextStep = () => {
 * 编辑器内容改变时的回调事件
 * */
 const mdChange = (text: string, html: any) => {
-  submitContent.value = html
+  content.value = text
 }
 
 const categoryOption = ref(computed(() => articalCategoryStore.getCategoryTec)) // CascaderOption[]
@@ -172,7 +173,7 @@ const confirmSubmit = async () => {
 
     const res = await articalStore.createArtical({
       title: title.value,
-      content: String(submitContent.value),
+      content: String(content.value),
       status: '1',
       category: category.value.toString(),
       cover: files[0]?.url ?? '',

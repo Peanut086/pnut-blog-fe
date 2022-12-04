@@ -15,14 +15,14 @@
 </template>
 
 <script lang="ts" setup>
-import pageContent from "../../components/pageContent/pageContent.vue"
-import {onMounted, ref} from "vue";
-import {useRouter} from "vue-router";
-import {useArticalStore} from "../../store/modules/artical";
+import pageContent from '../../components/pageContent/pageContent.vue'
+import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { useArticalStore } from '../../store/modules/artical'
 
 const router = useRouter()
 const articalStore = useArticalStore()
-let article = ref()
+const article = ref()
 
 onMounted(() => {
   article.value = articalStore.getCurrentArtical

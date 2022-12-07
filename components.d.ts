@@ -8,10 +8,12 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     BaseModal: typeof import('./src/components/baseModal/baseModal.vue')['default']
-    Common: typeof import('./src/components/comment/common.vue')['default']
+    Common: typeof import('./src/components/common/common.vue')['default']
+    CommontPanel: typeof import('./src/components/common/components/commontPanel.vue')['default']
     FormPanel: typeof import('./src/components/formPanel/formPanel.vue')['default']
     MarkdownEditor: typeof import('./src/components/markdownEditor/markdownEditor.vue')['default']
     Menus: typeof import('./src/components/menus/menus.vue')['default']
+    NAnchorLink: typeof import('naive-ui')['NAnchorLink']
     NAvatar: typeof import('naive-ui')['NAvatar']
     NButton: typeof import('naive-ui')['NButton']
     NCascader: typeof import('naive-ui')['NCascader']
@@ -20,7 +22,9 @@ declare module '@vue/runtime-core' {
     NDropdown: typeof import('naive-ui')['NDropdown']
     NForm: typeof import('naive-ui')['NForm']
     NFormItem: typeof import('naive-ui')['NFormItem']
+    NGi: typeof import('naive-ui')['NGi']
     NGradientText: typeof import('naive-ui')['NGradientText']
+    NGrid: typeof import('naive-ui')['NGrid']
     NIcon: typeof import('naive-ui')['NIcon']
     NInput: typeof import('naive-ui')['NInput']
     NMenu: typeof import('naive-ui')['NMenu']
